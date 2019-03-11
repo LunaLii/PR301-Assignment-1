@@ -1,0 +1,2 @@
+class Dummy {
+   def __init__(flightNumber : IntegerdepartureTime : Date
