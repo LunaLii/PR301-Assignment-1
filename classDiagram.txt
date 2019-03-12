@@ -1,6 +1,16 @@
 @startuml
 class Flight {
-   flightNumber : Integer
-   departureTime : Date
+   flightNumber : 10
+   departureTime : 2
+}
+
+class Person {
+    eyes : 10
+    legs : 3
+}
+
+class law {
+    native : 10
+    legislative : 3
 }
 @enduml
