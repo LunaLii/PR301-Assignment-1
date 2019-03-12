@@ -30,4 +30,4 @@ fileReader()
    # if ":" in listItem:
        # output.write()
         # print(listItem.split(' ')[3] + ',')
-file.close()
+#DO NOT USE .write, USE "with" 
