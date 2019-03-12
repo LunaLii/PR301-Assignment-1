@@ -9,8 +9,7 @@ def fileReader():
         if "class" in listItem:
             output.write(listItem + "   def __init__(")
         if ":" in listItem:
-            output.write(listItem.strip()) #Upon finding the first whitespace, remove everything after in listItem
+            output.write(listItem.split(' ')[3])
+            print(listItem.split(' ')[3])
 
 file = fileReader()
-
-
