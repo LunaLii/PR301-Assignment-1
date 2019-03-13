@@ -26,7 +26,7 @@ def getClassName(classArray):
 def get_attributes(classArray):
     attributes = []
     for listItem in classArray:
-        if ":" in listItem and "(" not in listItem:
+        if ":" in listItem and "(" not in listItem: #if an open bracket is detected, the listItem contains a method and will thus be ignored since we are trying to single out attributes, not methods. This will be again be used later for the get_methods method.
             attributes.append(listItem.split(' ')[3])
     return attributes
 
