@@ -2,7 +2,8 @@
 class Flight {
    flightNumber : 10
    departureTime : 2
-   date : size() #method
+   date : size() #size method
+   me : add() #add method
 }
 
 class Person {
