@@ -2,6 +2,7 @@
 class Flight {
    flightNumber : 10
    departureTime : 2
+   date : size()
 }
 
 class Person {
