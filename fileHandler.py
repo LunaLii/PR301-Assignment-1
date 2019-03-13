@@ -3,26 +3,32 @@ import re
 file = open('classDiagram.txt', 'r').readlines()
 output = open("outputClassDiagram.txt", "w")
 
-def classHandler():
+def class_handler(file):
     classList = [[]]
-    for i, m in enumerate(file[1:-1]):
+    for i, m in enumerate(file[1:-1]): #file[1:-1] removes the first and last elements of the file
         if m == "\n":
             if i != len(file[1:-1]) - 1:
                 classList.append([])
         else:
             classList[-1].append(m)
     return classList
-def fileReader():
-    #for classItem in classHandler(): #for each class array in the array of classes,
-        classList = []
-        for listItem in classItem: #for each list item in each class array,
-            if "class" in listItem:
-                output.write(listItem + "   def __init__(") #append each class name to the array of classes
-                print(classList)
 
+flight = ['class Flight {\n', '   flightNumber : 10\n', '   departureTime : 2\n', '}\n']
 
+def getClassName(classArray):
+    for listItem in classArray: #for each list item in each class array,
+        if "class" in listItem:
+            return listItem
 
-fileReader()
+def get_attributes(classArray):
+    attributes = []
+    for listItem in classArray:
+        if ":" in listItem:
+            attributes.append(listItem.split(' ')[3])
+    return attributes
+
+print(getClassName(flight))
+print(get_attributes(flight))
 
 #for listItem in rawcode:
    #if "class" in listItem:
