@@ -13,7 +13,10 @@ def class_handler(file):
             classList[-1].append(m)
     return classList
 
-flight = ['class Flight {\n', '   flightNumber : 10\n', '   departureTime : 2\n', '}\n']
+#for listItem in class_handler(file):
+    #print(listItem)
+
+flight = ['class Flight {\n', '   flightNumber : 10\n', '   departureTime : 2\n', '   date : size()\n', '}\n']
 
 def getClassName(classArray):
     for listItem in classArray: #for each list item in each class array,
@@ -23,11 +26,11 @@ def getClassName(classArray):
 def get_attributes(classArray):
     attributes = []
     for listItem in classArray:
-        if ":" in listItem:
+        if ":" in listItem and "(" not in listItem:
             attributes.append(listItem.split(' ')[3])
     return attributes
 
-print(getClassName(flight))
+print(getClassName(file))
 print(get_attributes(flight))
 
 #for listItem in rawcode:
@@ -36,4 +39,4 @@ print(get_attributes(flight))
    # if ":" in listItem:
        # output.write()
         # print(listItem.split(' ')[3] + ',')
-#DO NOT USE .write, USE "with" 
+#DO NOT USE .write, USE "with"
