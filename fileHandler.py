@@ -37,17 +37,17 @@ def get_methods(classArray):
             methods.append(listItem[:listItem.index("\n")-2].strip()) #for listItem, find the value between ": " and "(" (which is the method name) and then append it to the array of methods.
     return methods #result: ['size', 'add']
 
-def output_class(classArray):
+def output_class(classItem):
     with open("outputClassDiagram.txt", "w")  as output:
-        output.write(get_class_name(classArray) + ":\n  def __init__(self, ")
+        output.write(get_class_name(classItem) + ":\n  def __init__(self, ")
         result = ''
-        for listItem in get_attributes(classArray):
+        for listItem in get_attributes(classItem):
             result += listItem + ', '
         output.write(result[:-2] + ')\n')
-        for listItem in get_attributes(classArray):
+        for listItem in get_attributes(classItem):
             output.write('    self.' + listItem + ' = ' + listItem + '\n')
         output.write('\n')
-        for listItem in get_methods(classArray):
+        for listItem in get_methods(classItem):
             output.write('def ' + listItem + '(self):\n')
         output.write('\n')
 
