@@ -38,7 +38,7 @@ def get_methods(classArray):
     return methods #result: ['size', 'add']
 
 def output_class(classItem):
-    with open("outputClassDiagram.txt", "w")  as output:
+    with open("outputClassDiagram.txt", "w") as output:
         output.write(get_class_name(classItem) + ":\n  def __init__(self, ")
         result = ''
         for listItem in get_attributes(classItem):
@@ -53,7 +53,6 @@ def output_class(classItem):
 
 for classItem in class_handler(file):
     output_class(classItem)
-
 
 #print(get_attributes(flight))
 #print(get_methods(flight))
