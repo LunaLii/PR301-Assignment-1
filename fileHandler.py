@@ -1,7 +1,6 @@
 import re
 
 file = open('classDiagram.txt', 'r').readlines()
-output = open("outputClassDiagram.txt", "w")
 
 def class_handler(file):
     classList = [[]]
@@ -17,12 +16,12 @@ def class_handler(file):
 #for listItem in class_handler(file):
     #print(listItem)
 
-flight = ['class Flight {\n', '   flightNumber : 10\n', '   departureTime : 2\n', '   date : size()\n', '   me : add()\n', '}\n']
+#flight = ['class Flight {\n', '   flightNumber : int\n', '   departureTime : date\n', '   size()\n', '   add()\n', '}\n']
 
-def getClassName(classArray):
+def get_class_name(classArray):
     for listItem in classArray: #for each list item in each class array,
         if "class" in listItem:
-            return listItem
+            return listItem[:listItem.index(" {")]
 
 def get_attributes(classArray):
     attributes = []
@@ -35,11 +34,27 @@ def get_methods(classArray):
     methods = []
     for listItem in classArray:
         if "(" in listItem:
-            methods.append(listItem[listItem.find(": ")+1:listItem.find("(")].strip()) #for listItem, find the value between ": " and "(" (which is the method name) and then append it to the array of methods.
+            methods.append(listItem[:listItem.index("\n")-2].strip()) #for listItem, find the value between ": " and "(" (which is the method name) and then append it to the array of methods.
     return methods #result: ['size', 'add']
 
-print(getClassName(file))
-print(get_attributes(flight))
-print(get_methods(flight))
+def output_class(classArray):
+    with open("outputClassDiagram.txt", "w")  as output:
+        output.write(get_class_name(classArray) + ":\n  def __init__(self, ")
+        result = ''
+        for listItem in get_attributes(classArray):
+            result += listItem + ', '
+        output.write(result[:-2] + ')\n')
+        for listItem in get_attributes(classArray):
+            output.write('    self.' + listItem + ' = ' + listItem + '\n')
+        output.write('\n')
+        for listItem in get_methods(classArray):
+            output.write('def ' + listItem + '(self):\n')
+        output.write('\n')
+
+for classItem in class_handler(file):
+    output_class(classItem)
 
 
+#print(get_attributes(flight))
+#print(get_methods(flight))
+#output_class(flight)
