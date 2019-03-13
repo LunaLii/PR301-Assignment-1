@@ -1,9 +1,9 @@
 @startuml
 class Flight {
-   flightNumber : 10
-   departureTime : 2
-   date : size() #size method
-   me : add() #add method
+   flightNumber : int
+   departureTime : date
+   size()
+   add()
 }
 
 class Person {
