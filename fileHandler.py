@@ -13,10 +13,11 @@ def class_handler(file):
             classList[-1].append(m)
     return classList
 
+#Following two lines are tests to un-comment and display the classList. Please don't delete these.
 #for listItem in class_handler(file):
     #print(listItem)
 
-flight = ['class Flight {\n', '   flightNumber : 10\n', '   departureTime : 2\n', '   date : size()\n', '}\n']
+flight = ['class Flight {\n', '   flightNumber : 10\n', '   departureTime : 2\n', '   date : size()\n', '   me : add()\n', '}\n']
 
 def getClassName(classArray):
     for listItem in classArray: #for each list item in each class array,
@@ -30,13 +31,15 @@ def get_attributes(classArray):
             attributes.append(listItem.split(' ')[3])
     return attributes
 
+def get_methods(classArray):
+    methods = []
+    for listItem in classArray:
+        if "(" in listItem:
+            methods.append(listItem[listItem.find(": ")+1:listItem.find("(")].strip()) #for listItem, find the value between ": " and "(" (which is the method name) and then append it to the array of methods.
+    return methods #result: ['size', 'add']
+
 print(getClassName(file))
 print(get_attributes(flight))
+print(get_methods(flight))
 
-#for listItem in rawcode:
-   #if "class" in listItem:
-       #classList.append(listItem.split(' ')[0:2])
-   # if ":" in listItem:
-       # output.write()
-        # print(listItem.split(' ')[3] + ',')
-#DO NOT USE .write, USE "with"
+
