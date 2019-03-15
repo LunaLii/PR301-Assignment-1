@@ -11,7 +11,7 @@ def class_handler(file):
         else:
             classList[-1].append(m)
     return classList
-
+print(class_handler(file))
 #Following two lines are tests to un-comment and display the classList. Please don't delete these.
 #for listItem in class_handler(file):
     #print(listItem)
@@ -38,7 +38,7 @@ def get_methods(classArray):
     return methods #result: ['size', 'add']
 
 def output_class(classItem):
-    with open("outputClassDiagram.txt", "w") as output:
+    with open("outputClassDiagram.txt", "a") as output:
         output.write(get_class_name(classItem) + ":\n  def __init__(self, ")
         result = ''
         for listItem in get_attributes(classItem):
