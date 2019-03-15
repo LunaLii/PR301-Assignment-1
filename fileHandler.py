@@ -38,21 +38,26 @@ def get_methods(classArray):
     return methods #result: ['size', 'add']
 
 def output_class(classItem):
-    with open("outputClassDiagram.txt", "a") as output:
-        output.write(get_class_name(classItem) + ":\n  def __init__(self, ")
-        result = ''
-        for listItem in get_attributes(classItem):
-            result += listItem + ', '
-        output.write(result[:-2] + ')\n')
-        for listItem in get_attributes(classItem):
-            output.write('    self.' + listItem + ' = ' + listItem + '\n')
-        output.write('\n')
-        for listItem in get_methods(classItem):
-            output.write('def ' + listItem + '(self):\n')
-        output.write('\n')
+    #Add all into a string called result, then open the file and write the result into the output file.
+    result = get_class_name(classItem) + ":\n  def __init__(self"
 
-for classItem in class_handler(file):
-    output_class(classItem)
+    for listItem in get_attributes(classItem):
+        result += ', ' + listItem
+    result += '):\n'
+    for listItem in get_attributes(classItem):
+        result += '    self.' + listItem + ' = ' + listItem + '\n'
+    result += '\n'
+    for listItem in get_methods(classItem):
+        result += 'def ' + listItem + '(self):\n'
+    result += '\n'
+    return result
+
+files = ['outputClassDiagram.py', 'outputClassDiagram2.py']
+for classItem, file in zip(class_handler(file), files):
+    result = output_class(classItem)
+    with open(file, "w") as output:
+        output.write(result)
+
 
 #print(get_attributes(flight))
 #print(get_methods(flight))
