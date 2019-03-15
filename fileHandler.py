@@ -27,7 +27,8 @@ def get_attributes(classArray):
     attributes = []
     for listItem in classArray:
         if ":" in listItem and "(" not in listItem: #if an open bracket is detected, the listItem contains a method and will thus be ignored since we are trying to single out attributes, not methods. This will be again be used later for the get_methods method.
-            attributes.append(listItem.split(' ')[3])
+            result = listItem.split(' ')
+            attributes.append(result[4])
     return attributes
 
 def get_methods(classArray):
@@ -52,7 +53,7 @@ def output_class(classItem):
     result += '\n'
     return result
 
-files = ['outputClassDiagram.py', 'outputClassDiagram2.py']
+files = ['outputClassDiagram.py', 'outputClassDiagram2.py', 'outputClassDiagram3.py']
 for classItem, file in zip(class_handler(file), files):
     result = output_class(classItem)
     with open(file, "w") as output:
