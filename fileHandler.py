@@ -49,7 +49,7 @@ def output_class(classItem):
         result += '    self.' + listItem + ' = ' + listItem + '\n'
     result += '\n'
     for listItem in get_methods(classItem):
-        result += 'def ' + listItem + '(self):\n'
+        result += 'def ' + listItem + '(self):\n # Todo: incomplete\n   pass\n'
     result += '\n'
     return result
 
