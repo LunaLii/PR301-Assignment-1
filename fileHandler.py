@@ -24,7 +24,7 @@ def get_class_name(classArray):
 def get_attributes(classArray):
     attributes = []
     for listItem in classArray:
-        if ":" in listItem and "(" not in listItem and "--" not in listItem:
+        if ":" in listItem and "(" not in listItem:
             result = listItem.split(' ')
             attributes.append(result[4])
     return attributes
