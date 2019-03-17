@@ -1,9 +1,8 @@
 import re
 
-file = open('classDiagram.txt', 'r').readlines()
 
-
-def class_handler(file):
+def class_handler(classDiagramFile):
+    file = open(classDiagramFile, 'r').readlines()
     classList = [[]]
     for i, m in enumerate(file[1:-1]):  # remove 1st and last character
         if m == "\n":
@@ -12,7 +11,6 @@ def class_handler(file):
         else:
             classList[-1].append(m)
     return classList
-print(class_handler(file))
 
 
 def get_class_name(classArray):
@@ -53,7 +51,7 @@ def output_class(classItem):
     return result
 
 files = ['outputClassDiagram.py', 'outputClassDiagram2.py', 'outputClassDiagram3.py']
-for classItem, file in zip(class_handler(file), files):
+for classItem, file in zip(class_handler('classDiagram.txt'), files):
     result = output_class(classItem)
     with open(file, "w") as output:
         output.write(result)
