@@ -1,52 +1,39 @@
+from fileHandler import printClass
 from cmd import Cmd
 
 
-class Quitter(Cmd):
-    """
-    single command processor example
-    """
+class fileInput(Cmd):
     def __init__(self):
         Cmd.__init__(self)
         self.prompt = ">>> "
-        self.my_name = "unknown"
-
-    def do_name(self, the_name):
-        if the_name:
-            self.my_name = the_name
-        print(self.my_name)
 
     def do_input(self, the_string):
-        split_string = the_string.split()
-        if split_string[0] == 'space':
-            split_string.pop(0)
-            with open('classDiagram.txt', "a") as output:
-                output.write('    ' + ''.join(split_string) + '\n')
-        elif split_string[0] != 'space':
-            with open('classDiagram.txt', "a") as output:
-                output.write(the_string + '\n')
-
-    def do_greet(self, the_name):
         """
-        Syntax: greet [the_name]
-        Greet the named person
-        :param the_name: a string representing a person's name
+        Syntax: input [option] the_string
+        Writes plantUML to a file
+        :param [option] : % (represents leading four spaces)
+        :param the_string : a string representing one line of a plantUML file
         :return: None
         """
-        if the_name:
-            print("Hello " + the_name)
-        else:
-            print("Hello " + self.my_name)
+        with open('classDiagram.txt', 'a') as output:
+            if the_string[0:1] == '%':
+                output.write('   ' + the_string[1:] + '\n')
+            else:
+                output.write(the_string + '\n')
+
+    def do_printClass(self, line):
+        this = printClass('classDiagram.txt')
+        this.outputClasses()
 
     def do_quit(self, line):
         print("Quitting ......")
         return True
 
     def help_quit(self):
-        print("\n".join(['Quit from my CMD', ':return: True']))
+        print("\n".join(['Quit from python CMD', ':return: True']))
 
     do_q = do_quit
 
 
 if __name__ == "__main__":
-    quitter = Quitter()
-    quitter.cmdloop()
+    fileInput().cmdloop()
