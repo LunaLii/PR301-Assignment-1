@@ -1,4 +1,4 @@
-from fileHandler import printClass
+from fileHandler import PrintClass
 from cmd import Cmd
 import os
 
@@ -42,10 +42,7 @@ class fileInput(Cmd):
         Creates new files and writes class to each
         :return: None
         """
-        if os.stat(self.the_file).st_size != 0:
-            printClass(self.the_file).outputClasses()
-        else:
-            print("Error! Writing to empty file!")
+        PrintClass(self.the_file).outputClasses()
 
     def do_quit(self, line):
         print("exiting ......")
